@@ -1,0 +1,32 @@
+<div style="padding:2vw ;">
+    <div style="display:flex ; gap: 10px;">
+     <h1>My notes</h1>
+     <div style="display:flex ; padding-left:30px ; align-items: center;">
+      <button class="btn btn-primary"(click)="onCreate()"> Create note </button> 
+      <button routerLink="/archived" class="btn btn-link"> archived notes </button>
+      <button style="justify-self: flex-end; margin-left: 50px;" class="btn btn-danger" (click)="signOut()"> Signout</button>
+     </div>
+    </div>
+    <div class="row">
+      <div class="col" style="display:flex;align-items: center; gap: 10px; padding:20px ; ">
+        <div>
+          Category filter
+        </div>
+        <div ngbDropdown class="d-inline-block">
+          <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle style="width:10vw ;">
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="width:10vw ;">
+            <button ngbDropdownItem *ngFor="let category of categories" (click)="filterEndpoint(category.id)">{{category.name}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap: wrap;">
+        <div *ngFor="let note of filteredNotes" style="padding:10px ;">
+          <app-note (statusDone)="getNotes()" [notes]="note"></app-note>
+        </div>
+    </div>
+  </div>
+
+  
+ 

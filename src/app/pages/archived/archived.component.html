@@ -1,0 +1,16 @@
+<div style="padding:20px ;">
+    <div style="display:flex ; gap: 10px;">
+     <h1>Archived notes</h1>
+     <div style="display:flex ; padding-left:30px ; align-items: center;">
+          <button routerLink="/home" class="btn btn-link"> Go back to Unarchived notes </button>
+     </div>
+    </div>
+    <div style="display:flex;flex-wrap: wrap; padding: 20px; ">
+
+        <div *ngFor="let note of notes" style="padding:10px ;">
+          <app-note (statusDone)="getArchivedNotes()"  [notes]="note"> </app-note>
+        </div>
+    </div>
+  </div>
+  
+ 

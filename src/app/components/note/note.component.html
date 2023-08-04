@@ -1,0 +1,37 @@
+<div
+  class="note"
+  style="
+    width: 20vw;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 5px;
+    min-height: 100px;
+    display: flex;
+    padding: 10px;
+  "
+>
+  <div style="display: flex" class="col-9">
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+      "
+    >
+      <i class="fa-solid fa-envelope" style="font-size: 3rem"></i>
+    </div>
+    <div style="display: flex; align-items:flex-start ; flex-direction: column; justify-content: center; padding: 5px;">
+      <strong>
+        {{ notes.title }}
+      </strong>
+      <p>Last edited: {{ notes.updatedAt |date:'dd/MMM/yyyy' }}</p>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: flex-end; align-items: flex-end; gap: 5px;" class="col-3">
+    <i class="fa-solid fa-box-archive" (click)="changeNoteStatus(notes.id)" style="font-size: 1.5rem;" *ngIf="notes.archived==false"></i>
+    <i class="fa-solid fa-upload" (click)="changeNoteStatus(notes.id)" style="font-size: 1.5rem;" *ngIf="notes.archived==true"></i>
+    <i class="fa-solid fa-pencil" (click)="onEdit()" style="font-size: 1.5rem;"></i>
+    <i class="fa-solid fa-trash-can" (click)="openDeleteModal()"style="font-size: 1.5rem;"></i>
+  </div>
+</div>
