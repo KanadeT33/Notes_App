@@ -6,6 +6,7 @@ import {
   NgbAlertModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { NotesService } from 'src/app/services/notes.service';
+import { GlobalService } from 'src/global.service';
 
 @Component({
   selector: 'app-create-modal',
@@ -20,7 +21,7 @@ export class CreateModalComponent implements OnInit {
     title: new FormControl(''),
     content: new FormControl(''),
   });
-  constructor(private activeModal: NgbActiveModal, private noteService:NotesService) {}
+  constructor(private activeModal: NgbActiveModal, private noteService:NotesService, private globalService: GlobalService) {}
   ngOnInit(): void {
     if (this.isEdit) {
       this.getCategories()
@@ -48,9 +49,9 @@ export class CreateModalComponent implements OnInit {
   }
   createNote(note) {
     const { title, content } = note;
-
+    const userId= this.globalService.getTokenPayload().id
     const finalNote = {
-      noteData: { title, content, user: 4 },
+      noteData: { title, content, user: userId },
       categoryNames: this.categories,
     };
     this.noteService.createNote(finalNote).subscribe((data)=>{
